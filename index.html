@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IVIZ Project</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+      div.tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 0.5em;
+        font-size: 10px;
+        color: #222;
+        background: #fff;
+        border-radius: 2px;
+        pointer-events: none;
+        box-shadow: 0px 0px 2px 0px #a6a6a6;
+      }
+      .key path {
+        display: none;
+      }
+
+      .key line {
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .key text {
+        font-size: 10px;
+      }
+
+      .key rect {
+        stroke-width: 0.4;
+      }
+    </style>
   </head>
   <body>
-    <svg id="container"></svg>
+    <!-- <svg id="valueMap" height="1000" width="1000"></svg> -->
+    <svg id="choroplethMap" height="1000" width="1000"></svg>
+    <svg id="lineChart" height="1000" width="1000"></svg>
 
-    <svg id="timeContainer" height="400" width="500">
-      <g id="body" transform="translate(50,50)"></g>
-      <g id="xAxis"></g>
-      <g id="yAxis"></g>
-    </svg>
-
-    <script></script>
+    <!-- <script src="valueMap.js"></script> -->
+    <script src="choroplethMap.js"></script>
   </body>
 </html>
