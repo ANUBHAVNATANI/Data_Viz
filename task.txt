@@ -1,0 +1,16 @@
+1. Value Map  -- Done
+2. Chloropleth Map -- Done
+3. Line Chart -- Done 
+4. Diverging bar Chart -- Done
+
+5. Insights -- Anubhav and Subhajit
+6. Report -- Abhimanyu
+
+
+////////////
+1. Unified file for data loading  -- Subhajit
+2. Selctors for csv file working  -- Subhajit
+
+//////
+1. HTML file title and all --- Subhajit and Anubhav
+2. Complete View -- Subhajit and Anubhav
