@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>IVIZ Project</title>
-		<script src="https://d3js.org/d3.v5.min.js"></script>
-		<style>
-			div.tooltip {
-				position: absolute;
-				text-align: center;
-				padding: 0.5em;
-				font-size: 10px;
-				color: #222;
-				background: #fff;
-				border-radius: 2px;
-				pointer-events: none;
-				box-shadow: 0px 0px 2px 0px #a6a6a6;
-			}
-			.key path {
-				display: none;
-			}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IVIZ Project</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+      div.tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 0.5em;
+        font-size: 10px;
+        color: #222;
+        background: #fff;
+        border-radius: 2px;
+        pointer-events: none;
+        box-shadow: 0px 0px 2px 0px #a6a6a6;
+      }
+      .key path {
+        display: none;
+      }
 
-			.key line {
-				stroke: #000;
-				shape-rendering: crispEdges;
-			}
+      .key line {
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
 
-			.key text {
-				font-size: 10px;
-			}
+      .key text {
+        font-size: 10px;
+      }
 
-<<<<<<< HEAD
       .key rect {
         stroke-width: 0.4;
       }
@@ -39,76 +38,62 @@
   <body>
     <!-- <svg id="valueMap" height="1000" width="1000"></svg> -->
     <!-- <svg id="choroplethMap" height="1000" width="1000"></svg> -->
-    <svg id="divergingBarChart" height="1000" width="1000"></svg>
     <label for="state">Select a state</label>
-=======
-			.key rect {
-				stroke-width: 0.4;
-			}
-		</style>
-	</head>
-	<body>
-		<!-- <svg id="valueMap" height="1000" width="1000"></svg> -->
-		<!-- <svg id="choroplethMap" height="1000" width="1000"></svg> -->
-		<label for="state">Select a state</label>
->>>>>>> afb77cec3b0ccc8be84403eff93b43c2f3f3806d
 
-		<select name="state" id="state">
-			<option value="Andaman and Nicobar">Andaman and Nicobar</option>
-			<option value="Andhra Pradesh">Andhra Pradesh</option>
-			<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-			<option value="Assam">Assam</option>
-			<option value="Chhattisgarh">Chhattisgarh</option>
-			<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-			<option value="Daman and Diu">Daman and Diu</option>
-			<option value="Goa">Goa</option>
-			<option value="Gujarat">Gujarat</option>
-			<option value="Haryana">Haryana</option>
-			<option value="Himachal Pradesh">Himachal Pradesh</option>
-			<option value="Jammu and Kashmir">Jammu and Kashmir</option>
-			<option value="Jharkhand">Jharkhand</option>
-			<option value="Karnataka">Karnataka</option>
-			<option value="Kerala">Kerala</option>
-			<option value="Lakshadweep">Lakshadweep</option>
-			<option value="Madhya Pradesh">Madhya Pradesh</option>
-			<option value="Maharashtra">Maharashtra</option>
-			<option value="Manipur">Manipur</option>
-			<option value="Meghalaya">Meghalaya</option>
-			<option value="Mizoram">Mizoram</option>
-			<option value="Nagaland">Nagaland</option>
-			<option value="Orissa">Orissa</option>
-			<option value="Puducherry">Puducherry</option>
-			<option value="Punjab">Punjab</option>
-			<option value="Rajasthan">Rajasthan</option>
-			<option value="Sikkim">Sikkim</option>
-			<option value="Tamil Nadu">Tamil Nadu</option>
-			<option value="Telangana">Telangana</option>
-			<option value="Tripura">Tripura</option>
-			<option value="Uttarakhand">Uttarakhand</option>
-			<option value="Uttar Pradesh">Uttar Pradesh</option>
-			<option value="West Bengal">West Bengal</option>
-		</select>
+    <select name="state" id="state">
+      <option value="Andaman and Nicobar">Andaman and Nicobar</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+      <option value="Assam">Assam</option>
+      <option value="Chhattisgarh">Chhattisgarh</option>
+      <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+      <option value="Daman and Diu">Daman and Diu</option>
+      <option value="Goa">Goa</option>
+      <option value="Gujarat">Gujarat</option>
+      <option value="Haryana">Haryana</option>
+      <option value="Himachal Pradesh">Himachal Pradesh</option>
+      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+      <option value="Jharkhand">Jharkhand</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value="Kerala">Kerala</option>
+      <option value="Lakshadweep">Lakshadweep</option>
+      <option value="Madhya Pradesh">Madhya Pradesh</option>
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="Manipur">Manipur</option>
+      <option value="Meghalaya">Meghalaya</option>
+      <option value="Mizoram">Mizoram</option>
+      <option value="Nagaland">Nagaland</option>
+      <option value="Orissa">Orissa</option>
+      <option value="Puducherry">Puducherry</option>
+      <option value="Punjab">Punjab</option>
+      <option value="Rajasthan">Rajasthan</option>
+      <option value="Sikkim">Sikkim</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Tripura">Tripura</option>
+      <option value="Uttarakhand">Uttarakhand</option>
+      <option value="Uttar Pradesh">Uttar Pradesh</option>
+      <option value="West Bengal">West Bengal</option>
+    </select>
 
-    
-		<label for="category">Select category</label>
+    <label for="category">Select category</label>
 
-		<select name="category" id="category">
-			<option value="Drop out rate">Drop out rate</option>
-			<option value="Girls Toilet">Girls Toilet</option>
-			<option value="Boys Toilet">Boys Toilet</option>
-			<option value="Computer">Computer</option>
-			<option value="Drinking water">Drinking water</option>
-			<option value="Electricity">Electricity</option>
-			<option value="Education Budget">Education Budget</option>
-			<option value="Trained Teachers">Trained Teachers</option>
-			<option value="Gross Enrollment">Gross Enrollment</option>
-		</select>
+    <select name="category" id="category">
+      <option value="Drop out rate">Drop out rate</option>
+      <option value="Girls Toilet">Girls Toilet</option>
+      <option value="Boys Toilet">Boys Toilet</option>
+      <option value="Computer">Computer</option>
+      <option value="Drinking water">Drinking water</option>
+      <option value="Electricity">Electricity</option>
+      <option value="Education Budget">Education Budget</option>
+      <option value="Trained Teachers">Trained Teachers</option>
+      <option value="Gross Enrollment">Gross Enrollment</option>
+    </select>
 
-		<!-- <svg id="timeContainer" height="1000" width="1000"></svg> -->
-<!-- <script src="valueMap.js"></script> -->
+    <!-- <svg id="timeContainer" height="1000" width="1000"></svg> -->
+
+    <!-- <script src="valueMap.js"></script> -->
     <!-- <script src="choroplethMap.js"></script> -->
     <!-- <script src="TimeViz.js"></script> -->
-    <script src="divergingBarChart.js"></script>
- 
-	</body>
+  </body>
 </html>
