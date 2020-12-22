@@ -3,6 +3,7 @@ Promise.all([d3.csv("./data/school_boys_toilet.csv")]).then(showData);
 const bodyWidth = 300;
 const bodyHeight = 300;
 
+// main function
 function showData(dataSources) {
   let container = d3.select("#timeContainer");
 
@@ -20,6 +21,8 @@ function showData(dataSources) {
       states[State_UT] = [{ year: year, value: +All_Schools }];
     }
   }
+
+  document.querySelector("select");
 
   document.querySelector("select").addEventListener("change", event => {
     container.selectAll("*").remove();
@@ -43,35 +46,38 @@ function showData(dataSources) {
     container
       .append("g")
       .attr("transform", "translate(40, 0)")
-      .call(d3.axisLeft(yScale));
+      .attr("opacity", 0.7)
+      .call(d3.axisLeft(yScale).tickSize(-bodyWidth));
 
-    // container
-    //   .append("text")
-    //   .attr("transform", "rotate(-90)")
-    //   .attr("y", 0 - 10)
-    //   .attr("x", 0 - bodyheight / 2)
-    //   .attr("dy", "1em")
-    //   .style("text-anchor", "middle")
-    //   .text("PlaceHolder"); /// change dynamically
+    container
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - 10)
+      .attr("x", 0 - bodyHeight / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("PlaceHolder"); /// change dynamically
 
     container
       .append("g")
       .attr("transform", `translate(40, ${bodyHeight})`)
+      .attr("opacity", 0.7)
       .call(
         d3
           .axisBottom(xScale)
           .ticks(3)
+          .tickSize(-bodyHeight)
           .tickFormat(d3.timeFormat("%Y"))
       );
 
-    // container
-    //   .append("text")
-    //   .attr(
-    //     "transform",
-    //     "translate(" + bodyWidth / 2 + " ," + (bodyHeight + 20) + ")"
-    //   )
-    //   .style("text-anchor", "middle")
-    //   .text("Year");
+    container
+      .append("text")
+      .attr(
+        "transform",
+        "translate(" + bodyWidth / 2 + " ," + (bodyHeight + 20) + ")"
+      )
+      .style("text-anchor", "middle")
+      .text("Year");
 
     let valueLine = d3
       .line()

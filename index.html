@@ -38,6 +38,8 @@
   <body>
     <!-- <svg id="valueMap" height="1000" width="1000"></svg> -->
     <!-- <svg id="choroplethMap" height="1000" width="1000"></svg> -->
+    <svg id="timeContainer" height="1000" width="1000"></svg>
+    <!-- <svg id="divergingBarChart" height="1000" width="1000"></svg> -->
     <label for="state">Select a state</label>
 
     <select name="state" id="state">
@@ -75,25 +77,24 @@
       <option value="Uttar Pradesh">Uttar Pradesh</option>
       <option value="West Bengal">West Bengal</option>
     </select>
+    <div>
+      <label for="category">Select category</label>
 
-    <label for="category">Select category</label>
-
-    <select name="category" id="category">
-      <option value="Drop out rate">Drop out rate</option>
-      <option value="Girls Toilet">Girls Toilet</option>
-      <option value="Boys Toilet">Boys Toilet</option>
-      <option value="Computer">Computer</option>
-      <option value="Drinking water">Drinking water</option>
-      <option value="Electricity">Electricity</option>
-      <option value="Education Budget">Education Budget</option>
-      <option value="Trained Teachers">Trained Teachers</option>
-      <option value="Gross Enrollment">Gross Enrollment</option>
-    </select>
-
-    <!-- <svg id="timeContainer" height="1000" width="1000"></svg> -->
-
+      <select name="category" id="category">
+        <option value="Drop out rate">Drop out rate</option>
+        <option value="Girls Toilet">Girls Toilet</option>
+        <option value="Boys Toilet">Boys Toilet</option>
+        <option value="Computer">Computer</option>
+        <option value="Drinking water">Drinking water</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Education Budget">Education Budget</option>
+        <option value="Trained Teachers">Trained Teachers</option>
+        <option value="Gross Enrollment">Gross Enrollment</option>
+      </select>
+    </div>
     <!-- <script src="valueMap.js"></script> -->
     <!-- <script src="choroplethMap.js"></script> -->
-    <!-- <script src="TimeViz.js"></script> -->
+    <script src="TimeViz.js"></script>
+    <!-- <script src="divergingBarChart.js"></script> -->
   </body>
 </html>

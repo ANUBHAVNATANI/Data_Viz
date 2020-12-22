@@ -1,6 +1,6 @@
 Promise.all([
   d3.json("./Data/india_state.json"),
-  d3.csv("./Data/drop_out_rate.csv"),
+  d3.csv("./Data/drop_out_rate.csv")
 ]).then(showData);
 
 function displayItems(data) {
@@ -34,7 +34,7 @@ function showData(data) {
     }
   }
 
-  mapInfo.features = mapInfo.features.map((d) => {
+  mapInfo.features = mapInfo.features.map(d => {
     let state = d.properties["NAME_1"];
     d.properties.dropOutRates = states[state];
 
@@ -43,7 +43,7 @@ function showData(data) {
 
   let cScale = d3
     .scaleOrdinal()
-    .domain(mapInfo.features.map((d) => d.properties["NAME_1"]))
+    .domain(mapInfo.features.map(d => d.properties["NAME_1"]))
     .range(d3.schemePaired);
 
   let div = d3
@@ -59,11 +59,13 @@ function showData(data) {
     .data(mapInfo.features)
     .enter()
     .append("path")
-    .attr("d", (d) => path(d))
+    .attr("d", d => path(d))
     .attr("stroke", "black")
-    .attr("fill", (d) => cScale(d.properties["NAME_1"]))
-    .on("mouseenter", function (d) {
-      d3.select(this).transition().style("opacity", 0.5);
+    .attr("fill", d => cScale(d.properties["NAME_1"]))
+    .on("mouseenter", function(d) {
+      d3.select(this)
+        .transition()
+        .style("opacity", 0.5);
       div.transition().style("opacity", 1);
       div
         .html(
@@ -76,8 +78,10 @@ function showData(data) {
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 30 + "px");
     })
-    .on("mouseleave", function () {
-      d3.select(this).transition().style("opacity", 1);
+    .on("mouseleave", function() {
+      d3.select(this)
+        .transition()
+        .style("opacity", 1);
       div.transition().style("opacity", 0);
     });
 }
