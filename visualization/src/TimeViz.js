@@ -6,7 +6,7 @@ function TimeViz() {
     createChart();
   }, []);
 
-  const showData = (dataSources) => {
+  const showData = dataSources => {
     let container = d3.select("#timeContainer");
     let bodyWidth = 400;
     let bodyHeight = 400;
@@ -15,7 +15,7 @@ function TimeViz() {
 
     let states = {};
 
-    // console.log(boys_toilet);
+    console.log(boys_toilet);
     for (let { State_UT, year, All_Schools } of boys_toilet) {
       //   console.log({ State_UT, year, All_Schools });
       if (State_UT in states) {
@@ -26,12 +26,12 @@ function TimeViz() {
     }
     //console.log(states);
 
-    boys_toilet = boys_toilet.map((d) => ({
+    boys_toilet = boys_toilet.map(d => ({
       All_Schools: +d.All_Schools,
-      year: d.year,
+      year: d.year
     }));
 
-    let max_toilet = d3.max(boys_toilet, (d) => d.All_Schools);
+    let max_toilet = d3.max(boys_toilet, d => d.All_Schools);
 
     let yScale = d3
       .scaleLinear()
@@ -40,7 +40,7 @@ function TimeViz() {
 
     let xScale = d3
       .scaleTime()
-      .domain(d3.extent(boys_toilet, (d) => d.All_Schools))
+      .domain(d3.extent(boys_toilet, d => d.All_Schools))
       .range([0, bodyWidth]);
 
     container.append("g").call(d3.axisLeft(yScale));
@@ -51,8 +51,8 @@ function TimeViz() {
 
     let valueLine = d3
       .line()
-      .x((d) => xScale(d.All_Schools))
-      .y((d) => yScale(d.year));
+      .x(d => xScale(d.All_Schools))
+      .y(d => yScale(d.year));
 
     container
       .append("path")
