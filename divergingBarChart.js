@@ -8,12 +8,12 @@ Promise.all([
   d3.csv("./Data/gross_enrollment_school.csv")
 ]).then(showData);
 
-function showData(data) {
+function createDivergingBarChart(categoryData, container) {
+  container.selectAll("*").remove();
   const bodyHeight = 500;
-  const bodyWidth = 1000;
-  let container = d3.select("#divergingBarChart");
+  const bodyWidth = 1200;
   let states = {};
-  for (let { State_UT, year, Avg } of data) {
+  for (let { State_UT, year, Avg } of categoryData) {
     if (State_UT in states) {
       states[State_UT][year] = +Avg;
     } else {
@@ -108,4 +108,35 @@ function showData(data) {
   container.append("g").call(xAxis);
 
   container.append("g").call(yAxis);
+}
+
+function showData(data) {
+  const [
+    dropOutRate,
+    schoolBoysToilet,
+    schoolComputer,
+    schoolDrinkingWater,
+    schoolElectricity,
+    schoolGirlsToilet,
+    grossEnrollment
+  ] = data;
+  dataMap = {
+    dropOutRate,
+    schoolBoysToilet,
+    schoolComputer,
+    schoolDrinkingWater,
+    schoolElectricity,
+    schoolGirlsToilet,
+    grossEnrollment
+  };
+
+  let container = d3.select("#divergingBarChart");
+  let category = document.querySelector("#categoryForDiverging").value;
+  createDivergingBarChart(dataMap[category], container);
+  document
+    .querySelector("#categoryForDiverging")
+    .addEventListener("change", (event) => {
+      category = event.target.value;
+      createDivergingBarChart(dataMap[category], container);
+    });
 }
