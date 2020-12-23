@@ -12,6 +12,8 @@ Promise.all([
   d3.csv("./Data/gross_enrollment_school.csv")
 ]).then(showData);
 
+const deepClone = obj => JSON.parse(JSON.stringify(obj));
+
 function displayItems(data) {
   let htmlToReturn = "";
   for (let [key, value] of Object.entries(data)) {
@@ -262,9 +264,14 @@ function showData(data) {
 
   let category = document.querySelector("#category").value;
 
-  showValueMap(mapInfo, category, dataMap[category], valueMapContainer);
+  showValueMap(
+    deepClone(mapInfo),
+    category,
+    dataMap[category],
+    valueMapContainer
+  );
   showChoroplethMap(
-    mapInfo,
+    deepClone(mapInfo),
     category,
     dataMap[category],
     choroplethMapContainer
@@ -273,9 +280,14 @@ function showData(data) {
   document.querySelector("#category").addEventListener("change", event => {
     category = event.target.value;
 
-    showValueMap(mapInfo, category, dataMap[category], valueMapContainer);
+    showValueMap(
+      deepClone(mapInfo),
+      category,
+      dataMap[category],
+      valueMapContainer
+    );
     showChoroplethMap(
-      mapInfo,
+      deepClone(mapInfo),
       category,
       dataMap[category],
       choroplethMapContainer
