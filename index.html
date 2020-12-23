@@ -40,8 +40,10 @@
     </style>
   </head>
   <body>
+    <h1>IVIZ Project</h1>
+
     <div>
-      <label for="state">Select a state</label>
+      <label for="state">Select state for line chart visualization</label>
 
       <select name="state" id="state">
         <option value="Andaman and Nicobar">Andaman and Nicobar</option>
@@ -79,50 +81,60 @@
         <option value="West Bengal">West Bengal</option>
       </select>
 
-      <label for="category">Select category</label>
+      <label for="category">Select category for map visualization</label>
 
       <select name="category" id="category">
-        <option value="Drop out rate">Drop out rate</option>
-        <option value="Girls Toilet">Girls Toilet</option>
-        <option value="Boys Toilet">Boys Toilet</option>
-        <option value="Computer">Computer</option>
-        <option value="Drinking water">Drinking water</option>
-        <option value="Electricity">Electricity</option>
-        <option value="Education Budget">Education Budget</option>
-        <option value="Trained Teachers">Trained Teachers</option>
-        <option value="Gross Enrollment">Gross Enrollment</option>
+        <option value="literacyRate">Literacy Rate</option>
+        <option value="dropOutRate">Drop out rate</option>
+        <option value="schoolGirlsToilet">Girls Toilet</option>
+        <option value="schoolBoysToilet">Boys Toilet</option>
+        <option value="schoolComputer">Computer</option>
+        <option value="schoolDrinkingWater">Drinking water</option>
+        <option value="schoolElectricity">Electricity</option>
+        <option value="stateBudget">Education Budget</option>
+        <option value="trainedTeachers">Trained Teachers</option>
+        <option value="grossEnrollment">Gross Enrollment</option>
       </select>
     </div>
 
     <div>
-      <svg id="valueMap" height="700" width="700" style="padding: 20px;"></svg>
+      <svg id="valueMap" height="700" width="700" style="padding: 20px"></svg>
       <svg
         id="choroplethMap"
         height="700"
         width="700"
-        style="padding: 20px;"
+        style="padding: 20px"
       ></svg>
     </div>
     <div>
-      <svg
-        id="timeContainer"
-        height="400"
-        width="400"
-        style="padding: 20px;"
-      ></svg>
+      <svg id="lineChart" height="400" width="400" style="padding: 20px"></svg>
     </div>
     <div>
+      <label for="categoryForDiverging"
+        >Select category for Diverging BarChart</label
+      >
+
+      <select name="categoryForDiverging" id="categoryForDiverging">
+        <option value="dropOutRate">Drop out rate</option>
+        <option value="schoolGirlsToilet">Girls Toilet</option>
+        <option value="schoolBoysToilet">Boys Toilet</option>
+        <option value="schoolComputer">Computer</option>
+        <option value="schoolDrinkingWater">Drinking water</option>
+        <option value="schoolElectricity">Electricity</option>
+        <option value="grossEnrollment">Gross Enrollment</option>
+      </select>
+
       <svg
         id="divergingBarChart"
         height="1000"
         width="1000"
-        style="padding: 20px;"
+        style="padding: 20px"
       ></svg>
     </div>
 
-    <script src="valueMap.js"></script>
-    <script src="choroplethMap.js"></script>
-    <script src="TimeViz.js"></script>
+    <script src="map.js"></script>
+
+    <script src="lineChart.js"></script>
     <script src="divergingBarChart.js"></script>
   </body>
 </html>

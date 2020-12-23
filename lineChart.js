@@ -1,9 +1,5 @@
 Promise.all([d3.csv("./data/school_boys_toilet.csv")]).then(showData);
 
-let svg1 = document.getElementById("timeContainer");
-// const bodyWidth = svg1.style.width;
-// const bodyHeight = svg1.style.height;
-// console.log(svg1.style, bodyHeight, bodyWidth);
 const bodyHeight = 300;
 const bodyWidth = 300;
 
@@ -11,17 +7,14 @@ function createLineChart(curState, states, container) {
   container.selectAll("*").remove();
 
   // for  each state: draw line graph
-  let maxVal = d3.max(states[curState], d => d.value);
-  let minVal = d3.min(states[curState], d => d.value);
+  let maxVal = d3.max(states[curState], (d) => d.value);
+  let minVal = d3.min(states[curState], (d) => d.value);
 
-  let yScale = d3
-    .scaleLinear()
-    .domain([minVal, maxVal])
-    .range([bodyHeight, 0]);
+  let yScale = d3.scaleLinear().domain([minVal, maxVal]).range([bodyHeight, 0]);
 
   let xScale = d3
     .scaleTime()
-    .domain(d3.extent(states[curState], d => d.year))
+    .domain(d3.extent(states[curState], (d) => d.year))
     .range([0, bodyWidth]);
 
   container
@@ -59,8 +52,8 @@ function createLineChart(curState, states, container) {
 
   let valueLine = d3
     .line()
-    .x(d => xScale(d.year))
-    .y(d => yScale(d.value));
+    .x((d) => xScale(d.year))
+    .y((d) => yScale(d.value));
 
   container
     .append("path")
@@ -73,7 +66,7 @@ function createLineChart(curState, states, container) {
 
 // main function
 function showData(dataSources) {
-  let container = d3.select("#timeContainer");
+  let container = d3.select("#lineChart");
 
   let [boysToilet] = dataSources;
 
@@ -94,7 +87,7 @@ function showData(dataSources) {
 
   createLineChart(curState, states, container);
 
-  document.querySelector("select").addEventListener("change", event => {
+  document.querySelector("select").addEventListener("change", (event) => {
     curState = event.target.value;
     createLineChart(curState, states, container);
   });

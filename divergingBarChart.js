@@ -1,4 +1,13 @@
-d3.csv("./Data/drop_out_rate.csv").then(showData);
+Promise.all([
+  d3.csv("./Data/drop_out_rate.csv"),
+  d3.csv("./Data/school_boys_toilet.csv"),
+  d3.csv("./Data/school_computer.csv"),
+  d3.csv("./Data/school_drinking_water.csv"),
+  d3.csv("./Data/school_electricity.csv"),
+  d3.csv("./Data/school_girls_toilet.csv"),
+  d3.csv("./Data/gross_enrollment_school.csv")
+]).then(showData);
+
 function showData(data) {
   const bodyHeight = 500;
   const bodyWidth = 1000;
@@ -11,7 +20,6 @@ function showData(data) {
       states[State_UT] = { [year]: +Avg };
     }
   }
-
   let stateData = [];
   for (let state in states) {
     stateObj = states[state];
@@ -25,7 +33,6 @@ function showData(data) {
     percentChange = +percentChange.toFixed(2);
     stateData.push({ state, absoluteChange, percentChange });
   }
-  console.log(stateData);
   //diverging bar chart code
   let margin = { top: 30, right: 60, bottom: 10, left: 60 };
   let barHeight = 25;
