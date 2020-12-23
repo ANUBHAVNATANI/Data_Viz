@@ -7,14 +7,17 @@ function createLineChart(curState, states, container) {
   container.selectAll("*").remove();
 
   // for  each state: draw line graph
-  let maxVal = d3.max(states[curState], (d) => d.value);
-  let minVal = d3.min(states[curState], (d) => d.value);
+  let maxVal = d3.max(states[curState], d => d.value);
+  let minVal = d3.min(states[curState], d => d.value);
 
-  let yScale = d3.scaleLinear().domain([minVal, maxVal]).range([bodyHeight, 0]);
+  let yScale = d3
+    .scaleLinear()
+    .domain([minVal, maxVal])
+    .range([bodyHeight, 0]);
 
   let xScale = d3
     .scaleTime()
-    .domain(d3.extent(states[curState], (d) => d.year))
+    .domain(d3.extent(states[curState], d => d.year))
     .range([0, bodyWidth]);
 
   container
@@ -26,6 +29,7 @@ function createLineChart(curState, states, container) {
   container
     .append("text")
     .attr("transform", "rotate(-90)")
+    // .attr("transform", "translate(10,0)")
     .attr("y", 0 - 10)
     .attr("x", 0 - bodyHeight / 2)
     .attr("dy", "1em")
@@ -52,8 +56,8 @@ function createLineChart(curState, states, container) {
 
   let valueLine = d3
     .line()
-    .x((d) => xScale(d.year))
-    .y((d) => yScale(d.value));
+    .x(d => xScale(d.year))
+    .y(d => yScale(d.value));
 
   container
     .append("path")
@@ -83,11 +87,11 @@ function showData(dataSources) {
     }
   }
 
-  curState = document.querySelector("select").value;
+  curState = document.querySelector("#state").value;
 
   createLineChart(curState, states, container);
 
-  document.querySelector("select").addEventListener("change", (event) => {
+  document.querySelector("#state").addEventListener("change", event => {
     curState = event.target.value;
     createLineChart(curState, states, container);
   });

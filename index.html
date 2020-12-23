@@ -95,6 +95,20 @@
         <option value="trainedTeachers">Trained Teachers</option>
         <option value="grossEnrollment">Gross Enrollment</option>
       </select>
+
+      <label for="categoryForDiverging"
+        >Select category for diverging bar chart visualization</label
+      >
+
+      <select name="categoryForDiverging" id="categoryForDiverging">
+        <option value="dropOutRate">Drop out rate</option>
+        <option value="schoolGirlsToilet">Girls Toilet</option>
+        <option value="schoolBoysToilet">Boys Toilet</option>
+        <option value="schoolComputer">Computer</option>
+        <option value="schoolDrinkingWater">Drinking water</option>
+        <option value="schoolElectricity">Electricity</option>
+        <option value="grossEnrollment">Gross Enrollment</option>
+      </select>
     </div>
 
     <div>
@@ -110,20 +124,6 @@
       <svg id="lineChart" height="400" width="400" style="padding: 20px"></svg>
     </div>
     <div>
-      <label for="categoryForDiverging"
-        >Select category for Diverging BarChart</label
-      >
-
-      <select name="categoryForDiverging" id="categoryForDiverging">
-        <option value="dropOutRate">Drop out rate</option>
-        <option value="schoolGirlsToilet">Girls Toilet</option>
-        <option value="schoolBoysToilet">Boys Toilet</option>
-        <option value="schoolComputer">Computer</option>
-        <option value="schoolDrinkingWater">Drinking water</option>
-        <option value="schoolElectricity">Electricity</option>
-        <option value="grossEnrollment">Gross Enrollment</option>
-      </select>
-
       <svg
         id="divergingBarChart"
         height="1000"
