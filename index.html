@@ -37,27 +37,61 @@
       #timeContainer {
         padding: 50;
       }
-      #type_of_chart {
+      /* #type_of_chart {
         margin-left: 10%;
-      }
+      } */
     </style>
   </head>
   <body>
     <center>
       <h1>IVIZ Project</h1>
+      <h3>Anubhav Natani, Subhajit Nandi, Abhimanyu Gupta</h3>
       <h2>State of schools in different States and UT's of India</h2>
-    </center>
+      <h2 style = "color:blue"> Scroll to see all visualizations! and please use the selectors to view category wise and state wise..</h2>
+    
     <p id="type_of_chart">
       <strong>Below are 4 different type of charts</strong>
-    <ul>
-      <li>Normal Map of India</li>
-      <li>Choropleth Map of India</li>
-      <li>Line Chart for each state</li>
-      <li>Diverging Bar Chart</li>
-    </ul>
+    
+      <div>Normal Map of India</div>
+      <div>Choropleth Map of India</div>
+      <div>Line Chart for each state</div>
+      <div>Diverging Bar Chart</div>
+    
   </p>
+  </center>
+  <center><h3> India Value Map and Choropleth Map </h3><center>
     <div>
-      <label for="state">Select State/UT for line chart visualization</label>
+      
+      
+      <label for="category">Select category for map visualization</label>
+
+      <select name="category" id="category">
+        <option value="literacyRate">Literacy Rate</option>
+        <option value="dropOutRate">Drop out rate</option>
+        <option value="schoolGirlsToilet">Girls Toilet</option>
+        <option value="schoolBoysToilet">Boys Toilet</option>
+        <option value="schoolComputer">Computer</option>
+        <option value="schoolDrinkingWater">Drinking water</option>
+        <option value="schoolElectricity">Electricity</option>
+        <option value="stateBudget">Education Budget</option>
+        <option value="trainedTeachers">Trained Teachers</option>
+        <option value="grossEnrollment">Gross Enrollment</option>
+      </select>
+
+     
+
+    <div>
+      <svg id="valueMap" height="700" width="700" style="padding: 20px"></svg>
+      <svg
+        id="choroplethMap"
+        height="700"
+        width="700"
+        style="padding: 20px"
+      ></svg>
+    </div>
+    <div>
+      <center>
+        <label for="state">Select State/UT for line chart visualization</label>
 
       <select name="state" id="state">
         <option value="Andaman and Nicobar">Andaman and Nicobar</option>
@@ -95,23 +129,8 @@
         <option value="Uttar Pradesh">Uttar Pradesh</option>
         <option value="West Bengal">West Bengal</option>
       </select>
-
-      <label for="category">Select category for map visualization</label>
-
-      <select name="category" id="category">
-        <option value="literacyRate">Literacy Rate</option>
-        <option value="dropOutRate">Drop out rate</option>
-        <option value="schoolGirlsToilet">Girls Toilet</option>
-        <option value="schoolBoysToilet">Boys Toilet</option>
-        <option value="schoolComputer">Computer</option>
-        <option value="schoolDrinkingWater">Drinking water</option>
-        <option value="schoolElectricity">Electricity</option>
-        <option value="stateBudget">Education Budget</option>
-        <option value="trainedTeachers">Trained Teachers</option>
-        <option value="grossEnrollment">Gross Enrollment</option>
-      </select>
-
-      <label for="categoryForDiverging"
+      &nbsp; &nbsp; &nbsp;
+        <label for="categoryForDiverging"
         >Select category for diverging bar chart and line chart visualization</label
       >
 
@@ -125,26 +144,19 @@
         <option value="grossEnrollment">Gross Enrollment</option>
       </select>
     </div>
-
-    <div>
-      <svg id="valueMap" height="700" width="700" style="padding: 20px"></svg>
-      <svg
-        id="choroplethMap"
-        height="700"
-        width="700"
-        style="padding: 20px"
-      ></svg>
-    </div>
-    <div>
+    <h3> Line Chart for different States and Union Territory for different categories </h3>
       <svg id="lineChart" height="400" width="400" style="padding: 20px"></svg>
+    </center>
     </div>
     <div>
+      <center><h3> Diverging Bar Chart for different categories </h3>
       <svg
         id="divergingBarChart"
         height="1000"
         width="1000"
         style="padding: 20px"
       ></svg>
+    </center>
     </div>
 
     <script src="map.js"></script>
