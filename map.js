@@ -12,7 +12,7 @@ Promise.all([
   d3.csv("./Data/gross_enrollment_school.csv")
 ]).then(showData);
 
-const deepClone = obj => JSON.parse(JSON.stringify(obj));
+const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
 
 function displayItems(data) {
   let htmlToReturn = "";
@@ -41,7 +41,7 @@ function showValueMap(mapInfo, category, categoryData, container) {
     }
   }
 
-  mapInfo.features = mapInfo.features.map(d => {
+  mapInfo.features = mapInfo.features.map((d) => {
     let state = d.properties["NAME_1"];
     d.properties[category] = states[state];
     return d;
@@ -49,7 +49,7 @@ function showValueMap(mapInfo, category, categoryData, container) {
 
   let cScale = d3
     .scaleOrdinal()
-    .domain(mapInfo.features.map(d => d.properties["NAME_1"]))
+    .domain(mapInfo.features.map((d) => d.properties["NAME_1"]))
     .range(d3.schemePaired);
 
   let div = d3
@@ -65,13 +65,11 @@ function showValueMap(mapInfo, category, categoryData, container) {
     .data(mapInfo.features)
     .enter()
     .append("path")
-    .attr("d", d => path(d))
+    .attr("d", (d) => path(d))
     .attr("stroke", "black")
-    .attr("fill", d => cScale(d.properties["NAME_1"]))
-    .on("mouseenter", function(d) {
-      d3.select(this)
-        .transition()
-        .style("opacity", 0.5);
+    .attr("fill", (d) => cScale(d.properties["NAME_1"]))
+    .on("mouseenter", function (d) {
+      d3.select(this).transition().style("opacity", 0.5);
       div.transition().style("opacity", 1);
       div
         .html(
@@ -84,10 +82,8 @@ function showValueMap(mapInfo, category, categoryData, container) {
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 30 + "px");
     })
-    .on("mouseleave", function() {
-      d3.select(this)
-        .transition()
-        .style("opacity", 1);
+    .on("mouseleave", function () {
+      d3.select(this).transition().style("opacity", 1);
       div.transition().style("opacity", 0);
     });
 }
@@ -111,21 +107,21 @@ function showChoroplethMap(mapInfo, category, categoryData, container) {
       states[State_UT] = { [year]: +Avg };
     }
   }
-  mapInfo.features = mapInfo.features.map(d => {
+  mapInfo.features = mapInfo.features.map((d) => {
     let state = d.properties["NAME_1"];
     d.properties[category] = states[state]["2014-15"];
 
     return d;
   });
 
-  minCategoryValue = d3.min(mapInfo.features, d => d.properties[category]);
+  minCategoryValue = d3.min(mapInfo.features, (d) => d.properties[category]);
 
   medianCategoryValue = d3.median(
     mapInfo.features,
-    d => d.properties[category]
+    (d) => d.properties[category]
   );
 
-  maxCategoryValue = d3.max(mapInfo.features, d => d.properties[category]);
+  maxCategoryValue = d3.max(mapInfo.features, (d) => d.properties[category]);
 
   let sequentialScale = d3
     .scaleLinear()
@@ -145,13 +141,11 @@ function showChoroplethMap(mapInfo, category, categoryData, container) {
     .data(mapInfo.features)
     .enter()
     .append("path")
-    .attr("d", d => path(d))
+    .attr("d", (d) => path(d))
     .attr("stroke", "black")
-    .attr("fill", d => sequentialScale(d.properties[category]))
-    .on("mouseenter", function(d) {
-      d3.select(this)
-        .transition()
-        .style("opacity", 0.3);
+    .attr("fill", (d) => sequentialScale(d.properties[category]))
+    .on("mouseenter", function (d) {
+      d3.select(this).transition().style("opacity", 0.3);
       div.transition().style("opacity", 1);
       div
         .html(
@@ -162,10 +156,8 @@ function showChoroplethMap(mapInfo, category, categoryData, container) {
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 30 + "px");
     })
-    .on("mouseleave", function() {
-      d3.select(this)
-        .transition()
-        .style("opacity", 1);
+    .on("mouseleave", function () {
+      d3.select(this).transition().style("opacity", 1);
       div.transition().style("opacity", 0);
     });
 
@@ -213,10 +205,7 @@ function showChoroplethMap(mapInfo, category, categoryData, container) {
     .range([300, 0])
     .domain([minCategoryValue, maxCategoryValue]);
 
-  var yAxis = d3
-    .axisLeft()
-    .scale(y)
-    .ticks(10);
+  var yAxis = d3.axisLeft().scale(y).ticks(10);
 
   container
     .append("g")
@@ -277,7 +266,7 @@ function showData(data) {
     choroplethMapContainer
   );
 
-  document.querySelector("#category").addEventListener("change", event => {
+  document.querySelector("#category").addEventListener("change", (event) => {
     category = event.target.value;
 
     showValueMap(

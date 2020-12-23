@@ -1,23 +1,39 @@
-Promise.all([d3.csv("./data/school_boys_toilet.csv")]).then(showData);
+Promise.all([
+  d3.csv("./Data/drop_out_rate.csv"),
+  d3.csv("./Data/school_boys_toilet.csv"),
+  d3.csv("./Data/school_computer.csv"),
+  d3.csv("./Data/school_drinking_water.csv"),
+  d3.csv("./Data/school_electricity.csv"),
+  d3.csv("./Data/school_girls_toilet.csv"),
+  d3.csv("./Data/gross_enrollment_school.csv")
+]).then(showData);
 
 const bodyHeight = 300;
 const bodyWidth = 300;
 
-function createLineChart(curState, states, container) {
+function createLineChart(curState, stateData, container, curCategory) {
   container.selectAll("*").remove();
+  let states = {};
+  let formatYear = d3.timeParse("%Y");
 
+  for (let { State_UT, year, Avg } of stateData) {
+    year = formatYear(year.split("-")[0]);
+
+    if (State_UT in states) {
+      states[State_UT].push({ year: year, value: +Avg });
+    } else {
+      states[State_UT] = [{ year: year, value: +Avg }];
+    }
+  }
   // for  each state: draw line graph
-  let maxVal = d3.max(states[curState], d => d.value);
-  let minVal = d3.min(states[curState], d => d.value);
+  let maxVal = d3.max(states[curState], (d) => d.value);
+  let minVal = d3.min(states[curState], (d) => d.value);
 
-  let yScale = d3
-    .scaleLinear()
-    .domain([minVal, maxVal])
-    .range([bodyHeight, 0]);
+  let yScale = d3.scaleLinear().domain([minVal, maxVal]).range([bodyHeight, 0]);
 
   let xScale = d3
     .scaleTime()
-    .domain(d3.extent(states[curState], d => d.year))
+    .domain(d3.extent(states[curState], (d) => d.year))
     .range([0, bodyWidth]);
 
   container
@@ -34,7 +50,7 @@ function createLineChart(curState, states, container) {
     .attr("x", 0 - bodyHeight / 2)
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("PlaceHolder"); /// change dynamically
+    .text(curCategory); /// change dynamically
 
   container
     .append("g")
@@ -56,8 +72,8 @@ function createLineChart(curState, states, container) {
 
   let valueLine = d3
     .line()
-    .x(d => xScale(d.year))
-    .y(d => yScale(d.value));
+    .x((d) => xScale(d.year))
+    .y((d) => yScale(d.value));
 
   container
     .append("path")
@@ -72,27 +88,40 @@ function createLineChart(curState, states, container) {
 function showData(dataSources) {
   let container = d3.select("#lineChart");
 
-  let [boysToilet] = dataSources;
-
-  let states = {};
-  let formatYear = d3.timeParse("%Y");
-
-  for (let { State_UT, year, Avg } of boysToilet) {
-    year = formatYear(year.split("-")[0]);
-
-    if (State_UT in states) {
-      states[State_UT].push({ year: year, value: +Avg });
-    } else {
-      states[State_UT] = [{ year: year, value: +Avg }];
-    }
-  }
+  const [
+    dropOutRate,
+    schoolBoysToilet,
+    schoolComputer,
+    schoolDrinkingWater,
+    schoolElectricity,
+    schoolGirlsToilet,
+    grossEnrollment
+  ] = dataSources;
+  dataMap = {
+    dropOutRate,
+    schoolBoysToilet,
+    schoolComputer,
+    schoolDrinkingWater,
+    schoolElectricity,
+    schoolGirlsToilet,
+    grossEnrollment
+  };
 
   curState = document.querySelector("#state").value;
 
-  createLineChart(curState, states, container);
+  curCategory = document.querySelector("#categoryForDiverging").value;
 
-  document.querySelector("#state").addEventListener("change", event => {
+  createLineChart(curState, dataMap[curCategory], container, curCategory);
+
+  document.querySelector("#state").addEventListener("change", (event) => {
     curState = event.target.value;
-    createLineChart(curState, states, container);
+    createLineChart(curState, dataMap[curCategory], container, curCategory);
   });
+
+  document
+    .querySelector("#categoryForDiverging")
+    .addEventListener("change", (event) => {
+      curCategory = event.target.value;
+      createLineChart(curState, dataMap[curCategory], container, curCategory);
+    });
 }
