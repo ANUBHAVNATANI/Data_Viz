@@ -4,8 +4,8 @@ Promise.all([
 ]).then(showData);
 
 function showData(data) {
-  const bodyHeight = 700;
-  const bodyWidth = 700;
+  const bodyHeight = 500;
+  const bodyWidth = 500;
 
   let [mapInfo, dropOutData] = data;
 

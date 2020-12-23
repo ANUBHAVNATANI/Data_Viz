@@ -1,12 +1,15 @@
 Promise.all([d3.csv("./data/school_boys_toilet.csv")]).then(showData);
 
-const bodyWidth = 300;
+let svg1 = document.getElementById("timeContainer");
+// const bodyWidth = svg1.style.width;
+// const bodyHeight = svg1.style.height;
+// console.log(svg1.style, bodyHeight, bodyWidth);
 const bodyHeight = 300;
+const bodyWidth = 300;
 
 function createLineChart(curState, states, container) {
   container.selectAll("*").remove();
 
-  console.log(states[curState]);
   // for  each state: draw line graph
   let maxVal = d3.max(states[curState], d => d.value);
   let minVal = d3.min(states[curState], d => d.value);
