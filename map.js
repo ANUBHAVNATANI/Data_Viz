@@ -38,11 +38,13 @@ function showValueMap(mapInfo, category, categoryData, container) {
       states[State_UT] = { [year]: +Avg };
     }
   }
+
   mapInfo.features = mapInfo.features.map((d) => {
     let state = d.properties["NAME_1"];
     d.properties[category] = states[state];
     return d;
   });
+
   let cScale = d3
     .scaleOrdinal()
     .domain(mapInfo.features.map((d) => d.properties["NAME_1"]))
