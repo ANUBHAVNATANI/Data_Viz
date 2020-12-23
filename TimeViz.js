@@ -8,14 +8,17 @@ function createLineChart(curState, states, container) {
 
   console.log(states[curState]);
   // for  each state: draw line graph
-  let maxVal = d3.max(states[curState], (d) => d.value);
-  let minVal = d3.min(states[curState], (d) => d.value);
+  let maxVal = d3.max(states[curState], d => d.value);
+  let minVal = d3.min(states[curState], d => d.value);
 
-  let yScale = d3.scaleLinear().domain([minVal, maxVal]).range([bodyHeight, 0]);
+  let yScale = d3
+    .scaleLinear()
+    .domain([minVal, maxVal])
+    .range([bodyHeight, 0]);
 
   let xScale = d3
     .scaleTime()
-    .domain(d3.extent(states[curState], (d) => d.year))
+    .domain(d3.extent(states[curState], d => d.year))
     .range([0, bodyWidth]);
 
   container
@@ -53,8 +56,8 @@ function createLineChart(curState, states, container) {
 
   let valueLine = d3
     .line()
-    .x((d) => xScale(d.year))
-    .y((d) => yScale(d.value));
+    .x(d => xScale(d.year))
+    .y(d => yScale(d.value));
 
   container
     .append("path")
@@ -74,13 +77,13 @@ function showData(dataSources) {
   let states = {};
   let formatYear = d3.timeParse("%Y");
 
-  for (let { State_UT, year, All_Schools } of boysToilet) {
+  for (let { State_UT, year, Avg } of boysToilet) {
     year = formatYear(year.split("-")[0]);
 
     if (State_UT in states) {
-      states[State_UT].push({ year: year, value: +All_Schools });
+      states[State_UT].push({ year: year, value: +Avg });
     } else {
-      states[State_UT] = [{ year: year, value: +All_Schools }];
+      states[State_UT] = [{ year: year, value: +Avg }];
     }
   }
 
@@ -88,7 +91,7 @@ function showData(dataSources) {
 
   createLineChart(curState, states, container);
 
-  document.querySelector("select").addEventListener("change", (event) => {
+  document.querySelector("select").addEventListener("change", event => {
     curState = event.target.value;
     createLineChart(curState, states, container);
   });

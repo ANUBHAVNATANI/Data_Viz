@@ -1,6 +1,6 @@
 Promise.all([
   d3.json("./Data/india_state.json"),
-  d3.csv("./Data/drop_out_rate.csv"),
+  d3.csv("./Data/drop_out_rate.csv")
 ]).then(showData);
 
 function showData(data) {
@@ -26,7 +26,7 @@ function showData(data) {
     }
   }
 
-  mapInfo.features = mapInfo.features.map((d) => {
+  mapInfo.features = mapInfo.features.map(d => {
     let state = d.properties["NAME_1"];
     d.properties.avgDropOutRate2015 = states[state]["2014-15"];
 
@@ -35,17 +35,17 @@ function showData(data) {
 
   minDropOutRate = d3.min(
     mapInfo.features,
-    (d) => d.properties.avgDropOutRate2015
+    d => d.properties.avgDropOutRate2015
   );
 
   medianDropOutRate = d3.median(
     mapInfo.features,
-    (d) => d.properties.avgDropOutRate2015
+    d => d.properties.avgDropOutRate2015
   );
 
   maxDropOutRate = d3.max(
     mapInfo.features,
-    (d) => d.properties.avgDropOutRate2015
+    d => d.properties.avgDropOutRate2015
   );
 
   let sequentialScale = d3
@@ -66,11 +66,13 @@ function showData(data) {
     .data(mapInfo.features)
     .enter()
     .append("path")
-    .attr("d", (d) => path(d))
+    .attr("d", d => path(d))
     .attr("stroke", "black")
-    .attr("fill", (d) => sequentialScale(d.properties.avgDropOutRate2015))
-    .on("mouseenter", function (d) {
-      d3.select(this).transition().style("opacity", 0.3);
+    .attr("fill", d => sequentialScale(d.properties.avgDropOutRate2015))
+    .on("mouseenter", function(d) {
+      d3.select(this)
+        .transition()
+        .style("opacity", 0.3);
       div.transition().style("opacity", 1);
       div
         .html(
@@ -81,8 +83,10 @@ function showData(data) {
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 30 + "px");
     })
-    .on("mouseleave", function () {
-      d3.select(this).transition().style("opacity", 1);
+    .on("mouseleave", function() {
+      d3.select(this)
+        .transition()
+        .style("opacity", 1);
       div.transition().style("opacity", 0);
     });
 
@@ -131,7 +135,10 @@ function showData(data) {
     .range([300, 0])
     .domain([minDropOutRate, maxDropOutRate]);
 
-  var yAxis = d3.axisLeft().scale(y).ticks(10);
+  var yAxis = d3
+    .axisLeft()
+    .scale(y)
+    .ticks(10);
 
   container
     .append("g")
