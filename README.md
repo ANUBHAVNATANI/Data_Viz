@@ -1,13 +1,6 @@
-﻿IVIZ Project Report
+## IVIZ Project Report
 
-`   `Presented by:-
-
-Anubhav Natani (17UCC071)
-
-Abhimanyu Gupta (17UCS005)
-
-Subhajit Nandi (17UCS160)
-
+URL -- https://schoolviz.netlify.app/
 
 **Problem statement**
 
